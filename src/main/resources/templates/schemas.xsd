@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns="http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0" targetNamespace="http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:simpleType name="stringNN-11">
+        <xs:restriction base="xs:normalizedString">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="11"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="stringNN-20">
+        <xs:restriction base="xs:normalizedString">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="20"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-4">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-6">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="6"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-7">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="7"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-10">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="10"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-11">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="11"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-14">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="14"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-20">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="20"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-50">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="50"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-100">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="100"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-256">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="256"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-1024">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="1024"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-2000">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="2000"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-2048">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="2048"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="GenderType">
+        <xs:annotation>
+            <xs:documentation>Пол</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Male"/>
+            <xs:enumeration value="Female"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EmailAddressType">
+        <xs:annotation>
+            <xs:documentation>
+                Адрес электронной почты
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="30"/>
+            <xs:pattern value="[0-9a-zA-Z_.\-]{2,50}[@]{1}[0-9a-zA-Z_./-]{2,50}[.]{1}[a-zA-Z]{2,5}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:complexType name="DataElementType">
+        <xs:simpleContent>
+            <xs:extension base="ns:string-256">
+                <xs:attribute name="code" type="ns:string-50" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="AddressType">
+        <xs:annotation>
+            <xs:documentation>
+                Адрес
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="FullAddress" type="ns:string-1024"/>
+            <xs:element name="Index" type="ns:string-6"/>
+            <xs:element name="Region" type="ns:DataElementType"/>
+            <xs:element name="Area" type="ns:DataElementType" minOccurs="0"/>
+            <xs:element name="City" type="ns:DataElementType" minOccurs="0"/>
+            <xs:element name="CityArea" type="ns:DataElementType" minOccurs="0"/>
+            <xs:element name="Place" type="ns:DataElementType" minOccurs="0"/>
+            <xs:element name="Street" type="ns:DataElementType" minOccurs="0"/>
+            <xs:element name="AdditionalArea" type="ns:DataElementType" minOccurs="0"/>
+            <xs:element name="AdditionalStreet" type="ns:DataElementType" minOccurs="0"/>
+            <xs:element name="House" type="ns:DataElementType" minOccurs="0"/>
+            <xs:element name="Building1" type="ns:string-50" minOccurs="0"/>
+            <xs:element name="Building2" type="ns:string-50" minOccurs="0"/>
+            <xs:element name="Apartment" type="ns:string-50" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="HuntingLicenseApplicantDataType">
+        <xs:annotation>
+            <xs:documentation>
+                Структура данных для ввода и передачи данных о заявителе
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="FirstName" type="ns:string-256"/>
+            <xs:element name="LastName" type="ns:string-256"/>
+            <xs:element name="MiddleName" type="ns:string-256" minOccurs="0"/>
+            <xs:element name="BirthDate" type="xs:date"/>
+            <xs:element name="Sex" type="ns:GenderType"/>
+            <xs:element name="Email" type="ns:EmailAddressType" minOccurs="0"/>
+            <xs:element name="Phone" type="ns:string-14" minOccurs="0"/>
+            <xs:element name="Snils" type="ns:string-14"/>
+            <xs:element name="DocSeries" type="ns:string-4"/>
+            <xs:element name="DocNumber" type="ns:string-6"/>
+            <xs:element name="DocIssuerName" type="ns:string-2000"/>
+            <xs:element name="DocIssueDate" type="xs:date"/>
+            <xs:element name="DocIssuerDepartmentCode" type="ns:string-7" minOccurs="0"/>
+            <xs:element name="DocType" type="ns:string-4"/>
+            <xs:element name="BirthPlace" type="ns:string-256" minOccurs="0"/>
+            <xs:element name="Citizenship" type="ns:string-256" minOccurs="0"/>
+            <xs:element name="BirthCountry" type="ns:string-256" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="HuntingLicenseDocDataType">
+        <xs:annotation>
+            <xs:documentation>
+                Реквизиты охотничьего билета
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Series" type="ns:string-10"/>
+            <xs:element name="Number" type="ns:string-20"/>
+            <xs:element name="IssuerDate" type="xs:date"/>
+            <xs:element name="IssuerName" type="ns:string-2000"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DocumentReferenceType">
+        <xs:sequence>
+            <xs:element name="Code" type="ns:string-1024"/>
+            <xs:element name="Name" type="ns:string-1024"/>
+            <xs:element name="Description" type="ns:string-1024"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="HuntingLicenseDocumentReferencesType">
+        <xs:annotation>
+            <xs:documentation>
+                Структура для описания вложений
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="DocumentReference" type="ns:DocumentReferenceType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ApplicationDetailsType">
+        <xs:annotation>
+            <xs:documentation>
+                Подробности заявления
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="AddressRegistration" type="ns:AddressType"/>
+            <xs:element name="GetLicenseAddress" type="ns:AddressType"/>
+            <xs:element name="HuntingLicenseApplicant" type="ns:HuntingLicenseApplicantDataType"/>
+            <xs:element name="HuntingLicenseDocData" type="ns:HuntingLicenseDocDataType" minOccurs="0"/>
+            <xs:element name="HuntingLicenseDocumentReferences" type="ns:HuntingLicenseDocumentReferencesType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="cancelRequestType">
+        <xs:annotation>
+            <xs:documentation>
+                Запрос на отмену заявления
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="orderId" type="ns:stringNN-20"/>
+            <xs:element name="reason" type="ns:string-2048" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="textRequestType">
+        <xs:annotation>
+            <xs:documentation>
+                Текстовое сообщение от заявителя в ведомство
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="orderId" type="ns:stringNN-20"/>
+            <xs:element name="text" type="ns:string-2048"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FormDataType">
+        <xs:annotation>
+            <xs:documentation>
+                Данные формы заявления «Выдача охотничьих билетов единого федерального образца»
+                или запрос на отмену заявления
+                или текстовое сообщение от заявителя в ведомство
+            </xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:sequence>
+                <xs:element name="orderId" type="ns:stringNN-20"/>
+                <xs:element name="ServicesType" type="ns:stringNN-20"/>
+                <xs:element name="Organization" type="ns:DataElementType"/>
+                <xs:element name="bookId" type="ns:string-50"/>
+                <xs:element name="ApplicationDetails" type="ns:ApplicationDetailsType"/>
+            </xs:sequence>
+            <xs:element name="cancelRequest" type="ns:cancelRequestType"/>
+            <xs:element name="textRequest" type="ns:textRequestType"/>
+        </xs:choice>
+        <xs:attribute name="oktmo" type="ns:stringNN-11" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="orderIdType">
+        <xs:sequence>
+            <xs:annotation>
+                <xs:documentation>
+                    Номер заявки в ЛК ЕПГУ
+                </xs:documentation>
+            </xs:annotation>
+            <xs:element name="pguId" type="ns:stringNN-20"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="statusCodeType">
+        <xs:annotation>
+            <xs:documentation>
+                Новый статус заявления
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="techCode" type="xs:byte">
+                <xs:annotation>
+                    <xs:documentation>
+                        Код статуса ЕПГУ
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="changeOrderInfoType">
+        <xs:annotation>
+            <xs:documentation>
+                Информация для изменения статуса заявления в ЛК ЕПГУ
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="orderId" type="ns:orderIdType"/>
+            <xs:element name="statusCode" type="ns:statusCodeType"/>
+            <xs:element name="comment" type="ns:string-2048" minOccurs="0"/>
+            <xs:element name="cancelAllowed" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="sendMessageAllowed" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="CancelResponseResultType">
+        <xs:annotation>
+            <xs:documentation>
+                Результат передачи запроса на отмену заявления
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="ns:stringNN-20">
+            <xs:enumeration value="CANCELLED"/>
+            <xs:enumeration value="IN_PROGRESS"/>
+            <xs:enumeration value="REJECTED"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="cancelResponseType">
+        <xs:annotation>
+            <xs:documentation>
+                Ответ на запрос отмены заявления
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="orderId" type="ns:stringNN-20"/>
+            <xs:element name="result" type="ns:CancelResponseResultType"/>
+            <xs:element name="comment" type="ns:string-2048" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="TextResponseResultType">
+        <xs:annotation>
+            <xs:documentation>
+                Результат передачи текстового сообщения
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="ns:stringNN-20">
+            <xs:enumeration value="OK"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="textResponseType">
+        <xs:annotation>
+            <xs:documentation>
+                Ответ на текстовое сообщение от заявителя в ведомство
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="orderId" type="ns:stringNN-20"/>
+            <xs:element name="result" type="ns:TextResponseResultType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FormDataResponseType">
+        <xs:annotation>
+            <xs:documentation>
+                Ответ на подачу заявлени или запроса на отмену заявления или текстового сообщения от заявителя в
+                ведомство
+            </xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element name="changeOrderInfo" type="ns:changeOrderInfoType"/>
+            <xs:element name="cancelResponse" type="ns:cancelResponseType"/>
+            <xs:element name="textResponse" type="ns:textResponseType"/>
+        </xs:choice>
+        <xs:attribute name="oktmo" type="ns:string-11" use="optional"/>
+    </xs:complexType>
+    <xs:element name="FormData" type="ns:FormDataType"/>
+    <xs:element name="FormDataResponse" type="ns:FormDataResponseType"/>
+</xs:schema>
