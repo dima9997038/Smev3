@@ -55,12 +55,11 @@ public class PatternService {
                 "values (\n" +
                 "'%s',\n" +
                 "'<typ:ClientMessage xmlns:typ=\"urn://x-artefacts-smev-gov-ru/services/service-adapter/types\">\n" +
-                "  <typ:itSystem>FSOR01_3T</typ:itSystem>\n" +
+                "  <typ:itSystem>231b01</typ:itSystem>\n" +
                 "  <typ:RequestMessage>\n" +
                 "    <typ:messageType>REQUEST</typ:messageType>\n" +
                 "    <typ:RequestMetadata>\n" +
                 "      <typ:clientId>%s</typ:clientId>\n" +
-                "      <typ:testMessage>true</typ:testMessage>\n" +
                 "    </typ:RequestMetadata>\n" +
                 "    <typ:RequestContent>\n" +
                 "      <typ:content>\n" +

@@ -7,7 +7,7 @@ public class FormDataPatternBean {
         FormData formData = new FormData();
         formData.setBookId("1234567890");
 //        formData.setOrder("660000050");
-        formData.setOktmo("00000000001");
+        formData.setOktmo("231b01");
         formData.setXmlns("http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0");
         formData.setOrderId(660000050);
         formData.setServicesType("123123123");
