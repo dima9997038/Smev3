@@ -9,16 +9,16 @@ import java.util.UUID;
 
 @Repository
 public class ReceiveRepository {
-    public Long findMaxId() {
+    public Long findMinId() {
 
 
-        String query = "SELECT MAX(uid) FROM public.mnemonic_receive;";
+        String query = "SELECT MIN(uid) FROM public.mnemonic_receive;";
         try {
             Connection connection = ConnectionManager.open();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             if (resultSet.next()) {
-              Long id=  Long.valueOf(resultSet.getString("max"));
+              Long id=  Long.valueOf(resultSet.getString("min"));
               statement.close();
               resultSet.close();
                 return id;

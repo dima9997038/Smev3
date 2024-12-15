@@ -30,6 +30,9 @@ public class ScheduledService {
     @Scheduled(cron = "*/10 * * * * *")
     public void schedule() {
         Long uid = readMnemonicReceiveRepository.findMaxId();
+        if(uid.equals(0l)){
+            uid=receiveRepository.findMinId();
+        }
         System.out.println("Scheduled Service max uid mnemonic_receive:" + uid);
             uid=uid+1L;
             Optional<MnemonicReceiveEntity> firstReceive = receiveRepository.findByUid(uid);

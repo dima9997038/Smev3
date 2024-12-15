@@ -7,13 +7,15 @@ import java.sql.*;
 @Repository
 public class ReadMnemonicReceiveRepository {
     public Long findMaxId() {
-        String query = "SELECT MAX(mnemonic_receive_id) FROM public.read_app_mnemonic_receive;";
+//        String query = "SELECT MAX(mnemonic_receive_id) FROM public.read_app_mnemonic_receive;";
+        String query = "SELECT MAX(public.read_app_mnemonic_receive.mnemonic_receive_id) FROM public.read_app_mnemonic_receive\n" +
+                "\tinner join public.mnemonic_receive on public.read_app_mnemonic_receive.mnemonic_receive_id=public.mnemonic_receive.uid";
         try {
             Connection connection = ConnectionManager.open();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             if (resultSet.next()) {
-                Long id = Long.valueOf(resultSet.getString("max"));
+                Long id = resultSet.getLong("max");
                 statement.close();
                 connection.close();
                 return id;
