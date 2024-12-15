@@ -1,4 +1,4 @@
-package mipris.smev3.etalon.model;
+package mipris.smev3.etalon.modelClientSendRequest;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
@@ -55,14 +55,6 @@ public class AddressRegistration {
     public void setStreet(Street street) {
         this.street = street;
     }
-//
-//    public String getHouse() {
-//        return house;
-//    }
-//
-//    public void setHouse(String house) {
-//        this.house = house;
-//    }
 
     public String getBuilding1() {
         return building1;

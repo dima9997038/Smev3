@@ -1,4 +1,4 @@
-package mipris.smev3.etalon.model;
+package mipris.smev3.etalon.modelClientSendRequest;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;

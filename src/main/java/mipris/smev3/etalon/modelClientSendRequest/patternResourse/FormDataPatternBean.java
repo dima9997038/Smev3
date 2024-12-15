@@ -1,12 +1,11 @@
-package mipris.smev3.etalon.model.patternResourse;
+package mipris.smev3.etalon.modelClientSendRequest.patternResourse;
 
-import mipris.smev3.etalon.model.*;
+import mipris.smev3.etalon.modelClientSendRequest.*;
 
 public class FormDataPatternBean {
     public FormData returnBean() {
         FormData formData = new FormData();
         formData.setBookId("1234567890");
-//        formData.setOrder("660000050");
         formData.setOktmo("231b01");
         formData.setXmlns("http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0");
         formData.setOrderId(660000050);
@@ -15,7 +14,6 @@ public class FormDataPatternBean {
         organization.setCode("001");
         organization.setValue("Наименование органицации");
         formData.setOrganization(organization);
-//        formData.setOrganization("Наименование органицации");
         AddressRegistration addressRegistration = new AddressRegistration();
         addressRegistration.setFullAddress("121351, Москва г., Бобруйская ул., 4 д., 2 корп.");
         addressRegistration.setIndex("121351");

@@ -5,9 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public final class ConnectionManager {
-//    private static String USER = "postgres";
-//    private static String PASSWORD = "postgres";
-//    private static String URL = "jdbc:postgresql://localhost:5432/furniture_shop";
 
     private static String USER = "spring.datasource.username";
     private static String PASSWORD = "spring.datasource.password";

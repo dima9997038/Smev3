@@ -1,27 +1,13 @@
-package mipris.smev3.etalon.model;
+package mipris.smev3.etalon.modelClientSendRequest;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlValue;
 
-public class Organization {
+public class Region {
+
     private String code;
     private String value;
 
-    @Override
-    public String toString() {
-        return "Organization{" +
-                "code='" + code + '\'' +
-                ", value='" + value + '\'' +
-                '}';
-    }
-
-    public Organization(String code, String value) {
-        this.code = code;
-        this.value = value;
-    }
-
-    public Organization() {
-    }
     @XmlAttribute
     public String getCode() {
         return code;

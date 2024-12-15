@@ -1,10 +1,9 @@
-package mipris.smev3.etalon.model;
+package mipris.smev3.etalon.modelOrganizationAckRequest;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlValue;
 
-public class Region {
-
+public class StatusCode {
     private String code;
     private String value;
 

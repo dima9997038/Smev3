@@ -1,7 +1,7 @@
 package mipris.smev3.etalon.service;
 
-import mipris.smev3.etalon.model.FormData;
-import mipris.smev3.etalon.model.patternResourse.FormDataPatternBean;
+import mipris.smev3.etalon.modelClientSendRequest.FormData;
+import mipris.smev3.etalon.modelClientSendRequest.patternResourse.FormDataPatternBean;
 import mipris.smev3.etalon.repository.SendRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +23,6 @@ public class PatternService {
         FormDataPatternBean formDataPatternBean=new FormDataPatternBean();
         FormData formData = formDataPatternBean.returnBean();
         StringWriter writer = new StringWriter();
-        String result;
-        String xsdFile = "src/main/resources/template/employee.xsd";
         JAXBContext context = null;
         Marshaller m = null;
         try {
@@ -32,7 +30,6 @@ public class PatternService {
             m = context.createMarshaller();
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             m.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
-//            m.marshal(formData, System.out);
             m.marshal(formData, writer);
 
         } catch (JAXBException e) {
