@@ -1,6 +1,7 @@
 package mipris.smev3.etalon.service;
 
 import mipris.smev3.etalon.modelFormDanaXmlToObject.QueryResult;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
@@ -8,7 +9,9 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @Service
 public class QueryResultService {
-    static final String uriBase = "http://localhost:8081";
+    @Value("${uriBase}")
+    private String uriBase;
+//    static final String uriBase = "http://localhost:8081/query";
 
     public void sendToBack(QueryResult queryResult) {
 
@@ -17,7 +20,7 @@ public class QueryResultService {
                 .build();
 
         restClient.post()
-                .uri(uriBase + "/query")
+                .uri(uriBase )
                 .contentType(APPLICATION_JSON)
                 .body(queryResult)
                 .retrieve()
