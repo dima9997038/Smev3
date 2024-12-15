@@ -7,14 +7,15 @@ import java.sql.*;
 @Repository
 public class ReadMnemonicReceiveRepository {
     public Long findMaxId() {
-
-        Connection connection = ConnectionManager.open();
         String query = "SELECT MAX(mnemonic_receive_id) FROM public.read_app_mnemonic_receive;";
         try {
+            Connection connection = ConnectionManager.open();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             if (resultSet.next()) {
                 Long id = Long.valueOf(resultSet.getString("max"));
+                statement.close();
+                connection.close();
                 return id;
             } else return 0l;
         } catch (SQLException e) {
@@ -30,6 +31,8 @@ public class ReadMnemonicReceiveRepository {
             preparedStatement.setLong(1, mnemonicReceiveId);
             preparedStatement.setString(2, messageType);
             preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

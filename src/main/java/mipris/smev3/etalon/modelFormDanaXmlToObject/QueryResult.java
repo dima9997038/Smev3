@@ -36,6 +36,9 @@ public class QueryResult {
         @JacksonXmlProperty(localName = "TransactionCode")
         private String transactionCode;
 
+        @JacksonXmlProperty(localName = "OriginalMessageID")
+        private String OriginalMessageID;
+
         @JacksonXmlProperty(localName = "Sender")
         private String sender;
 
@@ -44,6 +47,14 @@ public class QueryResult {
 
         @JacksonXmlProperty(localName = "SendingDate")
         private String sendingDate;
+
+        public String getOriginalMessageID() {
+            return OriginalMessageID;
+        }
+
+        public void setOriginalMessageID(String originalMessageID) {
+            OriginalMessageID = originalMessageID;
+        }
 
         public String getSender() {
             return sender;

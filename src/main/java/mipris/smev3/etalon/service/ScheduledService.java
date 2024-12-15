@@ -27,7 +27,7 @@ public class ScheduledService {
         this.queryResultService = queryResultService;
     }
 
-    @Scheduled(cron = "0 * * * * *")
+    @Scheduled(cron = "*/10 * * * * *")
     public void schedule() {
         Long uid = readMnemonicReceiveRepository.findMaxId();
         System.out.println("Scheduled Service max uid mnemonic_receive:" + uid);

@@ -11,31 +11,38 @@ import java.util.UUID;
 public class ReceiveRepository {
     public Long findMaxId() {
 
-        Connection connection = ConnectionManager.open();
+
         String query = "SELECT MAX(uid) FROM public.mnemonic_receive;";
         try {
+            Connection connection = ConnectionManager.open();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             if (resultSet.next()) {
-                return Long.valueOf(resultSet.getString("max"));
+              Long id=  Long.valueOf(resultSet.getString("max"));
+              statement.close();
+              resultSet.close();
+                return id;
             } else return 0l;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public Optional<MnemonicReceiveEntity> findByUid(Long uid){
-        Connection connection = ConnectionManager.open();
+    public Optional<MnemonicReceiveEntity> findByUid(Long uid) {
         MnemonicReceiveEntity mnemonicReceiveEntity = new MnemonicReceiveEntity();
-        String query = "SELECT * FROM public.mnemonic_receive where uid = "+uid;
+        String query = "SELECT * FROM public.mnemonic_receive where uid = " + uid;
         try {
+            Connection connection = ConnectionManager.open();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             if (resultSet.next()) {
                 Long uidFromBD = Long.valueOf(resultSet.getString("uid"));
                 UUID id = UUID.fromString(resultSet.getString("id"));
                 UUID refId = UUID.fromString(resultSet.getString("ref_id"));
-                UUID refGroupId = UUID.fromString(resultSet.getString("ref_group_id"));
+                UUID refGroupId = null;
+                if (resultSet.getString("ref_group_id") != null) {
+                    refGroupId = UUID.fromString(resultSet.getString("ref_group_id"));
+                }
                 String content = resultSet.getString("content");
                 Timestamp createdAt = resultSet.getTimestamp("created_at");
                 mnemonicReceiveEntity.setId(id);
@@ -44,6 +51,8 @@ public class ReceiveRepository {
                 mnemonicReceiveEntity.setRefId(refId);
                 mnemonicReceiveEntity.setRefGroupId(refGroupId);
                 mnemonicReceiveEntity.setCreated_at(createdAt);
+                statement.close();
+                connection.close();
             } else return Optional.empty();
         } catch (SQLException e) {
             throw new RuntimeException(e);
