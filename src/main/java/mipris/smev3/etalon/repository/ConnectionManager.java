@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public final class ConnectionManager {
 
-    private static String USER = "spring.datasource.username";
-    private static String PASSWORD = "spring.datasource.password";
-    private static String URL = "spring.datasource.url";
+    private static final String USER = "spring.datasource.username";
+    private static final String PASSWORD = "spring.datasource.password";
+    private static final String URL = "spring.datasource.url";
 
 
     private ConnectionManager() {

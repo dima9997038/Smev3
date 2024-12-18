@@ -13,16 +13,15 @@ public class ReceiveRepository {
 
 
         String query = "SELECT MIN(uid) FROM public.mnemonic_receive;";
-        try {
-            Connection connection = ConnectionManager.open();
-            Statement statement = connection.createStatement();
+        try (Connection connection = ConnectionManager.open();
+             Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(query);
             if (resultSet.next()) {
-              Long id=  Long.valueOf(resultSet.getString("min"));
-              statement.close();
-              resultSet.close();
+                Long id = Long.valueOf(resultSet.getString("min"));
+                statement.close();
+                resultSet.close();
                 return id;
-            } else return 0l;
+            } else return 0L;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -31,9 +30,9 @@ public class ReceiveRepository {
     public Optional<MnemonicReceiveEntity> findByUid(Long uid) {
         MnemonicReceiveEntity mnemonicReceiveEntity = new MnemonicReceiveEntity();
         String query = "SELECT * FROM public.mnemonic_receive where uid = " + uid;
-        try {
-            Connection connection = ConnectionManager.open();
-            Statement statement = connection.createStatement();
+        try (Connection connection = ConnectionManager.open();
+             Statement statement = connection.createStatement()
+        ) {
             ResultSet resultSet = statement.executeQuery(query);
             if (resultSet.next()) {
                 Long uidFromBD = Long.valueOf(resultSet.getString("uid"));
@@ -51,8 +50,6 @@ public class ReceiveRepository {
                 mnemonicReceiveEntity.setRefId(refId);
                 mnemonicReceiveEntity.setRefGroupId(refGroupId);
                 mnemonicReceiveEntity.setCreated_at(createdAt);
-                statement.close();
-                connection.close();
             } else return Optional.empty();
         } catch (SQLException e) {
             throw new RuntimeException(e);
