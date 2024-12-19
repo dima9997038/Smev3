@@ -21,7 +21,7 @@ public class RestClientService {
                 .build();
 
         restClient.post()
-                .uri(uriBase )
+                .uri(uriBase + "/query")
                 .contentType(APPLICATION_JSON)
                 .body(queryResult)
                 .retrieve()
