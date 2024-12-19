@@ -1,0 +1,81 @@
+package mipris.smev3.concentrator.modelClientSendRequest.patternResourse;
+
+import mipris.smev3.concentrator.modelClientSendRequest.*;
+
+public class FormDataPatternBean {
+    public FormData returnBean() {
+        FormData formData = new FormData();
+        formData.setBookId("1234567890");
+        formData.setOktmo("231b01");
+        formData.setXmlns("http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0");
+        formData.setOrderId(660000050);
+        formData.setServicesType("123123123");
+        Organization organization = new Organization();
+        organization.setCode("001");
+        organization.setValue("Наименование органицации");
+        formData.setOrganization(organization);
+        AddressRegistration addressRegistration = new AddressRegistration();
+        addressRegistration.setFullAddress("121351, Москва г., Бобруйская ул., 4 д., 2 корп.");
+        addressRegistration.setIndex("121351");
+        Region region = new Region();
+        region.setValue("г. Москва");
+        region.setCode("0c5b2444-70a0-4932-980c-b4dc0d3f02b5");
+        addressRegistration.setRegion(region);
+        Street street = new Street();
+        street.setValue("ул. Бобруйская");
+        street.setCode("585eec0b-314c-4309-a497-3fe09300e903");
+        addressRegistration.setStreet(street);
+        House house = new House();
+        house.setValue("4");
+        house.setCode("5956b056-0d23-4f59-9c52-f561968bdda0");
+        addressRegistration.setHouse(house);
+        addressRegistration.setBuilding1("2");
+        addressRegistration.setApartment("23");
+        ApplicationDetails applicationDetails = new ApplicationDetails();
+        applicationDetails.setAddressRegistration(addressRegistration);
+        GetLicenseAddress getLicenseAddress = new GetLicenseAddress();
+        getLicenseAddress.setFullAddress("121351, Москва г., Бобруйская ул., 4 д., 2 корп.");
+        getLicenseAddress.setIndex("121351");
+        getLicenseAddress.setRegion(region);
+        getLicenseAddress.setStreet(street);
+        getLicenseAddress.setHouse(house);
+        getLicenseAddress.setBuilding1("2");
+        getLicenseAddress.setApartment("23");
+        applicationDetails.setGetLicenseAddress(getLicenseAddress);
+        formData.setApplicationDetails(applicationDetails);
+        HuntingLicenseApplicant huntingLicenseApplicant = new HuntingLicenseApplicant();
+        huntingLicenseApplicant.setFirstName("Петр");
+        huntingLicenseApplicant.setLastName("Иванов");
+        huntingLicenseApplicant.setMiddleName("Иванович");
+        huntingLicenseApplicant.setBirthDate("1990-10-31");
+        huntingLicenseApplicant.setSex("Male");
+        huntingLicenseApplicant.setEmail("Ivanov67@mail.ru");
+        huntingLicenseApplicant.setPhone("+7(123)1234567");
+        huntingLicenseApplicant.setSnils("423-423-432 11");
+        huntingLicenseApplicant.setDocSeries("5555");
+        huntingLicenseApplicant.setDocNumber("555555");
+        huntingLicenseApplicant.setDocIssuerName("ТП №68 МВД РФ");
+        huntingLicenseApplicant.setDocIssueDate("2008-10-31");
+        huntingLicenseApplicant.setDocIssuerDepartmentCode("232-014");
+        huntingLicenseApplicant.setDocType("21");
+        huntingLicenseApplicant.setBirthPlace("г.Москва");
+        huntingLicenseApplicant.setCitizenship("Российская Федерация");
+        huntingLicenseApplicant.setBirthCountry("Россия");
+        applicationDetails.setHuntingLicenseApplicant(huntingLicenseApplicant);
+        HuntingLicenseDocData huntingLicenseDocData = new HuntingLicenseDocData();
+        huntingLicenseDocData.setSeries("5555");
+        huntingLicenseDocData.setNumber("555555");
+        huntingLicenseDocData.setIssuerDate("2008-10-31");
+        huntingLicenseDocData.setIssuerName("МинПрироды №1");
+        applicationDetails.setHuntingLicenseDocData(huntingLicenseDocData);
+        HuntingLicenseDocumentReferences huntingLicenseDocumentReferences = new HuntingLicenseDocumentReferences();
+        DocumentReference documentReference = new DocumentReference();
+        documentReference.setCode("2");
+        documentReference.setName("Image1");
+        documentReference.setDescription("Фотография");
+        huntingLicenseDocumentReferences.setDocumentReference(documentReference);
+        applicationDetails.setHuntingLicenseDocumentReferences(huntingLicenseDocumentReferences);
+        return formData;
+
+    }
+}

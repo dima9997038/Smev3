@@ -1,6 +1,6 @@
 package mipris.smev3.ackResponse.repository;
 
-import mipris.smev3.etalon.repository.ConnectionManager;
+import mipris.smev3.repository.ConnectionManager;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
