@@ -1,11 +1,12 @@
 package mipris.smev3.concentrator.modelFormDanaXmlToObject;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
 
 import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FormData {
 
@@ -99,6 +100,7 @@ public class FormData {
         }
     }
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class ApplicationDetails {
         @JacksonXmlProperty(localName = "AddressRegistration", namespace = "http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0")
         private Address addressRegistration;
@@ -156,6 +158,7 @@ public class FormData {
             this.documentReferences = documentReferences;
         }
 
+        @JsonIgnoreProperties(ignoreUnknown = true)
         public static class Address {
             @JacksonXmlProperty(localName = "FullAddress", namespace = "http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0")
             private String fullAddress;
@@ -166,8 +169,26 @@ public class FormData {
             @JacksonXmlProperty(localName = "Region", namespace = "http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0")
             private Region region;
 
+            @JacksonXmlProperty(localName = "Area", namespace = "http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0")
+            private Area area;
+
+            @JacksonXmlProperty(localName = "City", namespace = "http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0")
+            private City city;
+
+            @JacksonXmlProperty(localName = "CityArea", namespace = "http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0")
+            private CityArea сityArea;
+
+            @JacksonXmlProperty(localName = "Place", namespace = "http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0")
+            private Place place;
+
             @JacksonXmlProperty(localName = "Street", namespace = "http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0")
             private Street street;
+
+            @JacksonXmlProperty(localName = "AdditionalArea", namespace = "http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0")
+            private AdditionalArea additionalArea;
+
+            @JacksonXmlProperty(localName = "AdditionalStreet", namespace = "http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0")
+            private AdditionalStreet additionalStreet;
 
             @JacksonXmlProperty(localName = "House", namespace = "http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0")
             private House house;
@@ -175,8 +196,51 @@ public class FormData {
             @JacksonXmlProperty(localName = "Building1", namespace = "http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0")
             private String building1;
 
+            @JacksonXmlProperty(localName = "Building2", namespace = "http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0")
+            private String building2;
+
             @JacksonXmlProperty(localName = "Apartment", namespace = "http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0")
             private String apartment;
+
+            public CityArea getСityArea() {
+                return сityArea;
+            }
+
+            public void setСityArea(CityArea сityArea) {
+                this.сityArea = сityArea;
+            }
+
+            public Place getPlace() {
+                return place;
+            }
+
+            public void setPlace(Place place) {
+                this.place = place;
+            }
+
+            public AdditionalArea getAdditionalArea() {
+                return additionalArea;
+            }
+
+            public void setAdditionalArea(AdditionalArea additionalArea) {
+                this.additionalArea = additionalArea;
+            }
+
+            public AdditionalStreet getAdditionalStreet() {
+                return additionalStreet;
+            }
+
+            public void setAdditionalStreet(AdditionalStreet additionalStreet) {
+                this.additionalStreet = additionalStreet;
+            }
+
+            public String getBuilding2() {
+                return building2;
+            }
+
+            public void setBuilding2(String building2) {
+                this.building2 = building2;
+            }
 
             public String getFullAddress() {
                 return fullAddress;
@@ -234,7 +298,115 @@ public class FormData {
                 this.apartment = apartment;
             }
 
+            public Area getArea() {
+                return area;
+            }
+
+            public void setArea(Area area) {
+                this.area = area;
+            }
+
+            public City getCity() {
+                return city;
+            }
+
+            public void setCity(City city) {
+                this.city = city;
+            }
+
             public static class Region {
+                @JacksonXmlProperty(isAttribute = true)
+                private String code;
+                @JacksonXmlText
+                private String text;
+
+                public String getCode() {
+                    return code;
+                }
+
+                public void setCode(String code) {
+                    this.code = code;
+                }
+
+                public String getText() {
+                    return text;
+                }
+
+                public void setText(String text) {
+                    this.text = text;
+                }
+            }
+
+            public static class Area {
+                @JacksonXmlProperty(isAttribute = true)
+                private String code;
+                @JacksonXmlText
+                private String text;
+
+                public String getCode() {
+                    return code;
+                }
+
+                public void setCode(String code) {
+                    this.code = code;
+                }
+
+                public String getText() {
+                    return text;
+                }
+
+                public void setText(String text) {
+                    this.text = text;
+                }
+            }
+
+            public static class City {
+                @JacksonXmlProperty(isAttribute = true)
+                private String code;
+                @JacksonXmlText
+                private String text;
+
+                public String getCode() {
+                    return code;
+                }
+
+                public void setCode(String code) {
+                    this.code = code;
+                }
+
+                public String getText() {
+                    return text;
+                }
+
+                public void setText(String text) {
+                    this.text = text;
+                }
+            }
+
+            public static class CityArea {
+                @JacksonXmlProperty(isAttribute = true)
+                private String code;
+                @JacksonXmlText
+                private String text;
+
+                public String getCode() {
+                    return code;
+                }
+
+                public void setCode(String code) {
+                    this.code = code;
+                }
+
+                public String getText() {
+                    return text;
+                }
+
+                public void setText(String text) {
+                    this.text = text;
+                }
+            }
+
+            public static class Place {
                 @JacksonXmlProperty(isAttribute = true)
                 private String code;
                 @JacksonXmlText
@@ -280,12 +452,58 @@ public class FormData {
                 }
             }
 
+            public static class AdditionalArea {
+                @JacksonXmlProperty(isAttribute = true)
+                private String code;
+                @JacksonXmlText
+                private String text;
+
+                public String getCode() {
+                    return code;
+                }
+
+                public void setCode(String code) {
+                    this.code = code;
+                }
+
+                public String getText() {
+                    return text;
+                }
+
+                public void setText(String text) {
+                    this.text = text;
+                }
+            }
+
+            public static class AdditionalStreet {
+                @JacksonXmlProperty(isAttribute = true)
+                private String code;
+                @JacksonXmlText
+                private String text;
+
+                public String getCode() {
+                    return code;
+                }
+
+                public void setCode(String code) {
+                    this.code = code;
+                }
+
+                public String getText() {
+                    return text;
+                }
+
+                public void setText(String text) {
+                    this.text = text;
+                }
+            }
+
             public static class House {
                 @JacksonXmlProperty(isAttribute = true)
                 private String code;
 
                 @JacksonXmlText
-                 private String text;
+                private String text;
 
                 public String getCode() {
                     return code;
@@ -551,6 +769,7 @@ public class FormData {
 
             @JacksonXmlProperty(localName = "Description", namespace = "http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0")
             private String description;
+
             public String getDescription() {
                 return description;
             }
@@ -558,7 +777,6 @@ public class FormData {
             public void setDescription(String description) {
                 this.description = description;
             }
-
 
 
             public String getCode() {

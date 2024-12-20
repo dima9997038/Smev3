@@ -3,6 +3,7 @@ package mipris.smev3.concentrator.modelFormDanaXmlToObject;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class QueryResult {
 
     public SmevMetadata getSmevMetadata() {
@@ -27,7 +28,7 @@ public class QueryResult {
         this.message = message;
     }
 
-
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class SmevMetadata {
         @JacksonXmlProperty(localName = "MessageId")
         private String messageId;
@@ -203,7 +204,7 @@ public class QueryResult {
 
             }
         }
-
+        @JsonIgnoreProperties(ignoreUnknown = true)
         public static class RequestContent {
             @JacksonXmlProperty(localName = "content")
             private Content content;
@@ -216,7 +217,7 @@ public class QueryResult {
                 this.content = content;
             }
 
-
+            @JsonIgnoreProperties(ignoreUnknown = true)
             public static class Content {
                 @JacksonXmlProperty(localName = "MessagePrimaryContent")
                 private MessagePrimaryContent messagePrimaryContent;
@@ -229,7 +230,7 @@ public class QueryResult {
                     this.messagePrimaryContent = messagePrimaryContent;
                 }
 
-
+                @JsonIgnoreProperties(ignoreUnknown = true)
                 public static class MessagePrimaryContent {
                     @JacksonXmlProperty(localName = "FormData", namespace = "http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0")
                     private FormData formData;

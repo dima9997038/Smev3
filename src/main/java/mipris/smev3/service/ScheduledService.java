@@ -59,7 +59,7 @@ public class ScheduledService {
                     restClientService.sendToBackTelecomRequest(clientMessage);
                     readMnemonicReceiveRepository.addReadReceive(uid, "requestFromTelecom");
                 } catch (JsonProcessingException e) {
-                    throw new RuntimeException(e);
+                    System.out.println(e.getMessage());
                 }
 
             } else {
