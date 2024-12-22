@@ -60,5 +60,53 @@ public class XmlConverter {
 
         return xmlResult;
     }
+
+    public String convertTelecomToXml(ResponseMessageTelecomDto request) {
+        String xmlResult = null;
+        AckClientMessage clientMessage = new AckClientMessage();
+        clientMessage.setItSystem("231b01");
+        AckResponseMessage responseMessage = new AckResponseMessage();
+        AckResponseMetadata metadata = new AckResponseMetadata();
+        metadata.setClientId(request.getResponseMessage().getResponseMetadata().getClientId());
+        metadata.setReplyToClientId(request.getResponseMessage().getResponseMetadata().getReplyToClientId());
+        AckResponseContent responseContent = new AckResponseContent();
+        AckContent content = new AckContent();
+        AckMessagePrimaryContent primaryContent = new AckMessagePrimaryContent();
+        AckFormDataResponse formDataResponse = new AckFormDataResponse();
+//        formDataResponse.setOktmo(request.getResponseMessage().getResponseContent().getContent().getMessagePrimaryContent().getFormResponse().getOktmo());
+        AckChangeOrderInfo changeOrderInfo = new AckChangeOrderInfo();
+        AckOrderId orderId = new AckOrderId();
+        orderId.setPguId(request.getResponseMessage().getResponseContent().getContent().getMessagePrimaryContent().getFormResponse().getChangeOrderInfo().getOrderId().getPguId());
+        AckStatusCode statusCode = new AckStatusCode();
+        statusCode.setTechCode(request.getResponseMessage().getResponseContent().getContent().getMessagePrimaryContent().getFormResponse().getChangeOrderInfo().getStatusCode().getTechCode());
+        changeOrderInfo.setOrderId(orderId);
+        changeOrderInfo.setStatusCode(statusCode);
+        changeOrderInfo.setComment(request.getResponseMessage().getResponseContent().getContent().getMessagePrimaryContent().getFormResponse().getChangeOrderInfo().getComment());
+        formDataResponse.setChangeOrderInfo(changeOrderInfo);
+        primaryContent.setFormDataResponse(formDataResponse);
+        content.setMessagePrimaryContent(primaryContent);
+        responseContent.setContent(content);
+        responseMessage.setResponseMetadata(metadata);
+        responseMessage.setResponseContent(responseContent);
+        clientMessage.setResponseMessage(responseMessage);
+
+        JAXBContext context = null;
+        try {
+            context = JAXBContext.newInstance(AckClientMessage.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            StringWriter writer = new StringWriter();
+            marshaller.marshal(clientMessage, writer);
+            xmlResult=writer.toString();
+
+
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return xmlResult;
+    }
 }
 

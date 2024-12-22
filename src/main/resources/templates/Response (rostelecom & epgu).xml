@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typ:ClientMessage xmlns:typ="urn://x-artefacts-smev-gov-ru/services/service-adapter/types">
+	<typ:itSystem>231b01</typ:itSystem>
+	<typ:ResponseMessage>
+		<typ:ResponseMetadata>
+			<typ:clientId>468c5bcc-166b-42ef-bb26-fe5608f75396</typ:clientId>
+			<typ:replyToClientId>c57014af-4541-4845-9d69-d29e658787e2</typ:replyToClientId>
+		</typ:ResponseMetadata>
+		<typ:ResponseContent>
+			<typ:content>
+				<typ:MessagePrimaryContent>
+					<ns:FormDataResponse oktmo="53" xmlns:ns="http://epgu.gosuslugi.ru/concentrator/huntingticket/3.1.0">
+						<ns:changeOrderInfo>
+							<ns:orderId>
+								<ns:pguId>660000050</ns:pguId>
+							</ns:orderId>
+							<ns:statusCode>
+								<ns:techCode>4</ns:techCode>
+							</ns:statusCode>
+							<ns:comment>Подозрительная у вас физиономия на фотографии, товарищ охотник</ns:comment>
+						</ns:changeOrderInfo>
+					</ns:FormDataResponse>
+
+
+					<tns:FormResponse xmlns:tns="urn://rostelekom.ru/HuntingTicket/1.0.2">
+						<tns:changeOrderInfo>
+							<tns:orderId>
+								<tns:pguId>764238378</tns:pguId>
+							</tns:orderId>
+							<tns:statusCode>
+								<tns:techCode>3</tns:techCode>
+							</tns:statusCode>
+							<tns:comment>Услуга оказана</tns:comment>
+						</tns:changeOrderInfo>
+					</tns:FormResponse>
+				</typ:MessagePrimaryContent>
+			</typ:content>
+		</typ:ResponseContent>
+	</typ:ResponseMessage>
+</typ:ClientMessage>
