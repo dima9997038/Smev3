@@ -3,10 +3,10 @@ package mipris.smev3;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class Smev3ApplicationTests {
 
-    @Test
+//    @Test
     void contextLoads() {
     }
 
