@@ -6,6 +6,7 @@ import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 import mipris.smev3.ackResponse.dto.*;
+import mipris.smev3.ackResponse.dto.permitResource.*;
 import org.springframework.stereotype.Service;
 
 import java.io.StringWriter;
@@ -106,6 +107,55 @@ public class XmlConverter {
         }
 
 
+        return xmlResult;
+    }
+
+    public String convertTelecomToXml(ResponseMessagePermitResourceDto request) {
+        String xmlResult = null;
+
+        ClientMessage clientMessage = new ClientMessage();
+        clientMessage.setItSystem("231b01");
+
+        ResponseMessage requestMessage = new ResponseMessage();
+        ResponseMetadata requestMetadata = new ResponseMetadata();
+        requestMetadata.setClientId(request.getResponseMessage().getResponseMetadata().getClientId());
+        requestMetadata.setReplyToClientId(request.getResponseMessage().getResponseMetadata().getReplyToClientId());
+        requestMessage.setResponseMetadata(requestMetadata);
+
+        ResponseContent requestContent = new ResponseContent();
+        Content content = new Content();
+
+        MessagePrimaryContent primaryContent = new MessagePrimaryContent();
+
+        RequestContentInner innerContent = new RequestContentInner();
+        FormData formData = new FormData();
+        formData.setXmlns(request.getResponseMessage().getResponseContent().getContent().getMessagePrimaryContent().getFormResponse().getXmlnsNs());
+
+        TextRequest textRequest = new TextRequest();
+        textRequest.setComment(request.getResponseMessage().getResponseContent().getContent().getMessagePrimaryContent().getFormResponse().getChangeOrderInfo().getComment());
+        formData.setTextRequest(textRequest);
+
+        innerContent.setFormData(formData);
+        primaryContent.setRequestContentInner(innerContent);
+        content.setMessagePrimaryContent(primaryContent);
+        requestContent.setContent(content);
+        requestMessage.setResponseContent(requestContent);
+
+        clientMessage.setResponseMessage(requestMessage);
+        JAXBContext jaxbContext = null;
+        try {
+            jaxbContext = JAXBContext.newInstance(ClientMessage.class);
+            Marshaller marshaller = jaxbContext.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            StringWriter writer = new StringWriter();
+            marshaller.marshal(clientMessage, writer);
+            xmlResult=writer.toString();
+
+
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
         return xmlResult;
     }
 }

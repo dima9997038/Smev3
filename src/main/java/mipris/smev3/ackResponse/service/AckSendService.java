@@ -1,6 +1,7 @@
 package mipris.smev3.ackResponse.service;
 
 import mipris.smev3.ackResponse.dto.ResponseMessageDto;
+import mipris.smev3.ackResponse.dto.ResponseMessagePermitResourceDto;
 import mipris.smev3.ackResponse.dto.ResponseMessageTelecomDto;
 import mipris.smev3.ackResponse.repository.AckRepository;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,12 @@ public class AckSendService {
 
 
     public void writeToTableSendTelecom(ResponseMessageTelecomDto request) {
+        String content = xmlConverter.convertTelecomToXml(request);
+        UUID uid= UUID.fromString(request.getResponseMessage().getResponseMetadata().getClientId());
+        ackRepository.saveSend(uid, content);
+    }
+
+    public void writeToTableSendPermitResource(ResponseMessagePermitResourceDto request) {
         String content = xmlConverter.convertTelecomToXml(request);
         UUID uid= UUID.fromString(request.getResponseMessage().getResponseMetadata().getClientId());
         ackRepository.saveSend(uid, content);
